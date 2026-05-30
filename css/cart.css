@@ -1,0 +1,154 @@
+.cart-page {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 72px 0 88px;
+}
+
+.cart-heading {
+    margin-bottom: 36px;
+}
+
+.cart-heading h1 {
+    margin: 0;
+    font-size: clamp(2.6rem, 6vw, 4.8rem);
+    line-height: 1;
+}
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 32px;
+    align-items: start;
+}
+
+.cart-items {
+    display: grid;
+    gap: 18px;
+}
+
+.empty-cart-message {
+    margin: 0;
+    padding: 28px;
+    color: #555555;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    line-height: 1.7;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 120px 1fr auto auto;
+    align-items: center;
+    gap: 20px;
+    padding: 18px;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+}
+
+.cart-item-image {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.cart-item-image img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.cart-item-details h2 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.cart-item-details p {
+    margin: 8px 0 12px;
+    color: #555555;
+}
+
+.cart-item-details button {
+    padding: 0;
+    border: 0;
+    color: #666666;
+    background: transparent;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.cart-item-quantity {
+    display: grid;
+    gap: 8px;
+    color: #555555;
+    font-weight: 700;
+}
+
+.cart-item-quantity input {
+    width: 76px;
+    min-height: 40px;
+    padding: 0 10px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+}
+
+.cart-item-price {
+    margin: 0;
+    font-weight: 800;
+}
+
+.order-summary {
+    position: sticky;
+    top: 96px;
+    padding: 24px;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+}
+
+.order-summary h2 {
+    margin: 0 0 20px;
+    font-size: 1.2rem;
+}
+
+.order-summary .btn {
+    width: 100%;
+    margin-top: 18px;
+}
+
+.continue-shopping {
+    display: block;
+    margin-top: 16px;
+    text-align: center;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+@media (max-width: 900px) {
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .order-summary {
+        position: static;
+    }
+}
+
+@media (max-width: 720px) {
+    .cart-page {
+        padding: 48px 0 64px;
+    }
+
+    .cart-item {
+        grid-template-columns: 92px 1fr;
+        align-items: start;
+    }
+
+    .cart-item-quantity,
+    .cart-item-price {
+        grid-column: 2;
+    }
+}

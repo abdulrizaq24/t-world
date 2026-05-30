@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T-World | Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <a class="brand" href="../index.html">T-World</a>
+
+        <nav class="admin-nav" aria-label="Admin navigation">
+          <a class="active" href="dashboard.html">Dashboard</a>
+          <a href="#orders">Orders</a>
+          <a href="#products">Products</a>
+          <a href="../pages/shop.html">View Store</a>
+        </nav>
+      </aside>
+
+      <main class="admin-main">
+        <header class="admin-header">
+          <div>
+            <p class="eyebrow">Admin</p>
+            <h1>Dashboard</h1>
+          </div>
+          <a class="btn btn-primary" href="#products">Add Product</a>
+        </header>
+
+        <section class="stats-grid" aria-label="Store statistics">
+          <article class="stat-card">
+            <span>Total Orders</span>
+            <strong>128</strong>
+          </article>
+          <article class="stat-card">
+            <span>Total Products</span>
+            <strong>42</strong>
+          </article>
+          <article class="stat-card">
+            <span>Revenue</span>
+            <strong>$8,420</strong>
+          </article>
+          <article class="stat-card">
+            <span>Customers</span>
+            <strong>316</strong>
+          </article>
+        </section>
+
+        <section class="admin-section" id="orders">
+          <div class="section-title">
+            <h2>Recent Orders</h2>
+            <a href="#">View all</a>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Customer</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#TW-1024</td>
+                  <td>Amina Yusuf</td>
+                  <td><span class="status shipped">Shipped</span></td>
+                  <td>$59.98</td>
+                </tr>
+                <tr>
+                  <td>#TW-1023</td>
+                  <td>Daniel Lee</td>
+                  <td><span class="status processing">Processing</span></td>
+                  <td>$34.99</td>
+                </tr>
+                <tr>
+                  <td>#TW-1022</td>
+                  <td>Sara Khan</td>
+                  <td><span class="status pending">Pending</span></td>
+                  <td>$87.97</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section" id="products">
+          <div class="section-title">
+            <h2>Product Management</h2>
+            <button class="btn btn-secondary" type="button">New Product</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Stock</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Classic Black Tee</td>
+                  <td>Plain</td>
+                  <td>34</td>
+                  <td>$24.99</td>
+                </tr>
+                <tr>
+                  <td>Oversized White Tee</td>
+                  <td>Oversized</td>
+                  <td>21</td>
+                  <td>$29.99</td>
+                </tr>
+                <tr>
+                  <td>Street Graphic Tee</td>
+                  <td>Graphic</td>
+                  <td>18</td>
+                  <td>$34.99</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
