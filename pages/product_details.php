@@ -53,6 +53,7 @@ require_once __DIR__ . '/../includes/header.php';
           <?php endif; ?>
 
           <form class="product-form" method="post" action="../actions/add_to_cart.php">
+            <?= csrf_input() ?>
             <input type="hidden" name="product_id" value="<?= h((string) $product['id']) ?>" />
 
             <fieldset>

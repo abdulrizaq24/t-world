@@ -4,6 +4,7 @@ $pageTitle = $pageTitle ?? 'T-World';
 $pageCss = $pageCss ?? [];
 $basePath = $basePath ?? '';
 $user = current_user();
+$cartCount = cart_count();
 
 ?>
 <!doctype html>
@@ -35,7 +36,7 @@ $user = current_user();
               <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
             </svg>
           </a>
-          <a class="icon-link" href="<?= h(base_path('pages/cart.php')) ?>" aria-label="Cart">
+          <a class="icon-link cart-link" href="<?= h(base_path('pages/cart.php')) ?>" aria-label="Cart, <?= h((string) $cartCount) ?> items">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="9" cy="21" r="1"></circle>
               <circle cx="20" cy="21" r="1"></circle>
@@ -43,8 +44,11 @@ $user = current_user();
                 d="M1 1h4l2.5 13.5a2 2 0 0 0 2 1.5h8.8a2 2 0 0 0 2-1.6L22 6H6"
               ></path>
             </svg>
+            <?php if ($cartCount > 0): ?>
+              <span class="cart-badge"><?= h((string) $cartCount) ?></span>
+            <?php endif; ?>
           </a>
-          <a class="icon-link" href="<?= h(base_path($user ? 'auth/logout.php' : 'auth/login.php')) ?>" aria-label="<?= $user ? 'Logout' : 'Login' ?>">
+          <a class="icon-link" href="<?= h(base_path($user ? (($user['role'] ?? '') === 'admin' ? 'admin/dashboard.php' : 'account/profile.php') : 'auth/login.php')) ?>" aria-label="<?= $user ? 'Account' : 'Login' ?>">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="8" r="4"></circle>
               <path d="M4 22c1.5-4 4.3-6 8-6s6.5 2 8 6"></path>
@@ -53,3 +57,5 @@ $user = current_user();
         </div>
       </nav>
     </header>
+
+

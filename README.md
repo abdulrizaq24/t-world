@@ -65,7 +65,7 @@ The schema creates a demo admin account:
 
 ```text
 Email: admin@t-world.test
-Password: password
+Password: Malicha@123
 ```
 
 ## Main PHP Pages
@@ -78,8 +78,13 @@ pages/cart.php
 pages/checkout.php
 auth/login.php
 auth/register.php
+account/profile.php
+account/orders.php
+account/order_details.php
 admin/dashboard.php
 admin/product_form.php
+admin/orders.php
+admin/order_details.php
 ```
 
 The older `.html` files are static prototypes from the first build phase. Use the `.php` pages for the database-backed version.
@@ -90,7 +95,25 @@ The older `.html` files are static prototypes from the first build phase. Use th
 - Product details from MySQL
 - Session cart
 - Checkout creates orders and order items
+- Checkout pre-fills saved customer details
 - Stock reduces after checkout
-- Customer registration and login
-- Admin dashboard
-- Admin create/edit/hide products
+- Customer registration, login, profile editing, saved shipping details, and stronger form validation
+- Customer order history, order details, and status summaries
+- Admin dashboard with product search/category/status/low-stock filters
+- Admin create/edit/hide/delete products with low-stock warnings and order-history protection
+- Admin view/update order statuses with order search/status filters and pagination
+- CSRF protection for admin, customer, cart, checkout, login, and registration POST forms
+- Admin customer list and detail pages with search, pagination, order counts, and total spent
+
+
+## Product Image Uploads
+
+Admin product images are uploaded to:
+
+```text
+uploads/products
+```
+Allowed image types: JPG, PNG, WEBP. Maximum size: 2MB.
+
+When an uploaded product image is replaced or a safe-deleted product is removed, old files inside uploads/products are cleaned up automatically. Seeded images inside images are not deleted.
+

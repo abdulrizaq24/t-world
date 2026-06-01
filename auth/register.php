@@ -8,43 +8,53 @@ $pageCss = ['auth.css'];
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim($_POST['name'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
-    $confirmPassword = $_POST['confirm_password'] ?? '';
-
-    if ($name === '' || $email === '' || $password === '') {
-        $error = 'Please fill in all fields.';
-    } elseif ($password !== $confirmPassword) {
-        $error = 'Passwords do not match.';
+    if (!csrf_token_is_valid($_POST['csrf_token'] ?? null)) {
+        $error = 'Your session security token expired. Please try again.';
     } else {
-        global $pdo;
+        $name = trim($_POST['name'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $password = $_POST['password'] ?? '';
+        $confirmPassword = $_POST['confirm_password'] ?? '';
 
-        $statement = $pdo->prepare('SELECT id FROM users WHERE email = :email');
-        $statement->execute(['email' => $email]);
+        $passwordError = password_validation_error($password);
 
-        if ($statement->fetch()) {
-            $error = 'An account with that email already exists.';
+        if ($name === '' || $email === '' || $password === '') {
+            $error = 'Please fill in all fields.';
+        } elseif (!email_is_valid($email)) {
+            $error = 'Please enter a valid email address.';
+        } elseif ($passwordError) {
+            $error = $passwordError;
+        } elseif ($password !== $confirmPassword) {
+            $error = 'Passwords do not match.';
         } else {
-            $insert = $pdo->prepare(
-                'INSERT INTO users (name, email, password_hash) VALUES (:name, :email, :password_hash)'
-            );
-            $insert->execute([
-                'name' => $name,
-                'email' => $email,
-                'password_hash' => password_hash($password, PASSWORD_DEFAULT),
-            ]);
+            global $pdo;
 
-            session_regenerate_id(true);
+            $statement = $pdo->prepare('SELECT id FROM users WHERE email = :email');
+            $statement->execute(['email' => $email]);
 
-            $_SESSION['user'] = [
-                'id' => (int) $pdo->lastInsertId(),
-                'name' => $name,
-                'email' => $email,
-                'role' => 'customer',
-            ];
+            if ($statement->fetch()) {
+                $error = 'An account with that email already exists.';
+            } else {
+                $insert = $pdo->prepare(
+                    'INSERT INTO users (name, email, password_hash) VALUES (:name, :email, :password_hash)'
+                );
+                $insert->execute([
+                    'name' => $name,
+                    'email' => $email,
+                    'password_hash' => password_hash($password, PASSWORD_DEFAULT),
+                ]);
 
-            redirect_to('../index.php');
+                session_regenerate_id(true);
+
+                $_SESSION['user'] = [
+                    'id' => (int) $pdo->lastInsertId(),
+                    'name' => $name,
+                    'email' => $email,
+                    'role' => 'customer',
+                ];
+
+                redirect_to('../index.php');
+            }
         }
     }
 }
@@ -64,6 +74,7 @@ require_once __DIR__ . '/../includes/header.php';
           <?php endif; ?>
 
           <form class="auth-form" method="post">
+            <?= csrf_input() ?>
             <label>
               Full name
               <input type="text" name="name" value="<?= h($name ?? '') ?>" required />

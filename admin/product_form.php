@@ -32,6 +32,8 @@ if ($productId > 0 && !$product) {
 
         <nav class="admin-nav" aria-label="Admin navigation">
           <a href="dashboard.php">Dashboard</a>
+          <a href="orders.php">Orders</a>
+          <a href="customers.php">Customers</a>
           <a class="active" href="dashboard.php#products">Products</a>
           <a href="../pages/shop.php">View Store</a>
           <a href="../auth/logout.php">Logout</a>
@@ -52,7 +54,8 @@ if ($productId > 0 && !$product) {
             <p class="admin-message error-message"><?= h($error) ?></p>
           <?php endif; ?>
 
-          <form class="admin-form" method="post" action="../actions/save_product.php">
+          <form class="admin-form" method="post" action="../actions/save_product.php" enctype="multipart/form-data">
+            <?= csrf_input() ?>
             <input type="hidden" name="id" value="<?= h($product['id'] ?? '') ?>" />
 
             <label>
@@ -88,9 +91,24 @@ if ($productId > 0 && !$product) {
               </label>
             </div>
 
+            <?php if (!empty($product['image_url'])): ?>
+              <div class="current-product-image image-placeholder" data-label="Current product photo">
+                <img
+                  src="<?= h(base_path($product['image_url'])) ?>"
+                  alt="<?= h($product['name'] ?? 'Product image') ?>"
+                  onerror="this.hidden = true"
+                />
+              </div>
+            <?php endif; ?>
+
+            <label>
+              Upload product image
+              <input type="file" name="product_image" accept="image/jpeg,image/png,image/webp" />
+            </label>
+
             <label>
               Image path
-              <input type="text" name="image_url" value="<?= h($product['image_url'] ?? 'images/product-new.jpg') ?>" required />
+              <input type="text" name="image_url" value="<?= h($product['image_url'] ?? '') ?>" placeholder="uploads/products/example.jpg" />
             </label>
 
             <label class="checkbox-field">
@@ -105,3 +123,4 @@ if ($productId > 0 && !$product) {
     </div>
   </body>
 </html>
+

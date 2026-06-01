@@ -7,6 +7,8 @@ require_once __DIR__ . '/../includes/functions.php';
 require_admin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_valid_csrf('../admin/dashboard.php#products');
+
     global $pdo;
 
     $id = (int) ($_POST['id'] ?? 0);

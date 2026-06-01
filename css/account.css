@@ -1,0 +1,273 @@
+.account-page {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 72px 0 88px;
+}
+
+.account-heading {
+    margin-bottom: 36px;
+}
+
+.account-heading h1 {
+    margin: 0;
+    font-size: clamp(2.6rem, 6vw, 4.8rem);
+    line-height: 1;
+}
+
+.account-heading p:not(.eyebrow) {
+    max-width: 560px;
+    margin: 16px 0 0;
+    color: #555555;
+    line-height: 1.7;
+}
+
+.split-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.account-empty,
+.account-panel {
+    padding: 24px;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.account-empty h2,
+.account-panel h2 {
+    margin: 0 0 14px;
+    font-size: 1.2rem;
+}
+
+.account-empty p,
+.account-panel p {
+    color: #555555;
+    line-height: 1.7;
+}
+
+.account-table-wrap {
+    overflow-x: auto;
+}
+
+.account-table-wrap table {
+    width: 100%;
+    min-width: 620px;
+    border-collapse: collapse;
+}
+
+.account-table-wrap th,
+.account-table-wrap td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.account-table-wrap th {
+    color: #666666;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.account-table-wrap a {
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.status.shipped {
+    color: #0f5132;
+    background: #d1e7dd;
+}
+
+.status.processing {
+    color: #664d03;
+    background: #fff3cd;
+}
+
+.status.pending,
+.status.cancelled {
+    color: #842029;
+    background: #f8d7da;
+}
+
+.account-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.account-totals {
+    width: min(100%, 360px);
+    margin: 24px 0 0 auto;
+}
+
+@media (max-width: 720px) {
+    .account-page {
+        padding: 48px 0 64px;
+    }
+
+    .split-heading,
+    .account-detail-grid {
+        align-items: flex-start;
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+}
+
+.account-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 24px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.account-tabs a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 4px;
+    color: #666666;
+    font-weight: 800;
+    border-bottom: 2px solid transparent;
+}
+
+.account-tabs a.active {
+    color: #111111;
+    border-color: #111111;
+}
+
+.account-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.account-form {
+    display: grid;
+    gap: 18px;
+}
+
+.account-form label {
+    display: grid;
+    gap: 8px;
+    color: #333333;
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.account-form input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.account-form input:focus {
+    outline: 2px solid #111111;
+    outline-offset: 2px;
+}
+
+.account-message {
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.account-message.success {
+    color: #0f5132;
+    background: #d1e7dd;
+}
+
+.account-message.error {
+    color: #842029;
+    background: #f8d7da;
+}
+
+@media (max-width: 720px) {
+    .account-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.account-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0 0 24px;
+}
+
+.order-status-summary {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.account-stat {
+    min-height: 110px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.account-stat span {
+    color: #666666;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.account-stat strong {
+    color: #111111;
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.account-stat a {
+    color: #111111;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.account-stat.compact {
+    min-height: 88px;
+}
+
+.account-stat.compact strong {
+    font-size: 1.35rem;
+}
+
+@media (max-width: 920px) {
+    .account-stats,
+    .order-status-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .account-stats,
+    .order-status-summary {
+        grid-template-columns: 1fr;
+    }
+}

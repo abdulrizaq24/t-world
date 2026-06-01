@@ -14,6 +14,10 @@ CREATE TABLE users (
     email VARCHAR(160) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     role ENUM('customer', 'admin') NOT NULL DEFAULT 'customer',
+    phone VARCHAR(40) NULL,
+    address VARCHAR(255) NULL,
+    city VARCHAR(120) NULL,
+    postal_code VARCHAR(40) NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -72,4 +76,5 @@ INSERT INTO products (name, category, description, price, stock, image_url) VALU
 ('Heavyweight Green Tee', 'new', 'A heavyweight cotton tee with a structured fit.', 31.99, 20, 'images/product-6.jpg');
 
 INSERT INTO users (name, email, password_hash, role) VALUES
-('Admin User', 'admin@t-world.test', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi', 'admin');
+('Admin User', 'admin@t-world.test', '$2y$10$GOW/BEL0hWOZuYYlw8jk/OwwMJbgjQPkJXWgrXpKdNocFT8eS8NoK', 'admin');
+

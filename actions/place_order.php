@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || count($cart) === 0) {
     redirect_to('../pages/cart.php');
 }
 
+require_valid_csrf('../pages/checkout.php', 'checkout_error');
+
 global $pdo;
 
 $firstName = trim($_POST['first_name'] ?? '');
@@ -24,6 +26,16 @@ $user = current_user();
 
 if ($customerName === '' || $email === '' || $phone === '' || $address === '' || $city === '' || $postalCode === '') {
     set_flash('checkout_error', 'Please complete all checkout fields.');
+    redirect_to('../pages/checkout.php');
+}
+
+if (!email_is_valid($email)) {
+    set_flash('checkout_error', 'Please enter a valid email address.');
+    redirect_to('../pages/checkout.php');
+}
+
+if (!phone_is_valid($phone)) {
+    set_flash('checkout_error', 'Please enter a valid phone number.');
     redirect_to('../pages/checkout.php');
 }
 
@@ -78,9 +90,7 @@ try {
         'INSERT INTO order_items (order_id, product_id, product_name, size, quantity, price)
          VALUES (:order_id, :product_id, :product_name, :size, :quantity, :price)'
     );
-    $stockUpdateStatement = $pdo->prepare(
-        'UPDATE products SET stock = stock - :quantity WHERE id = :product_id'
-    );
+    $stockUpdateStatement = $pdo->prepare('UPDATE products SET stock = stock - :quantity WHERE id = :product_id');
 
     foreach ($freshCart as $item) {
         $itemStatement->execute([
@@ -95,6 +105,26 @@ try {
             'quantity' => $item['quantity'],
             'product_id' => $item['product_id'],
         ]);
+    }
+
+    if ($user) {
+        $profileStatement = $pdo->prepare(
+            'UPDATE users
+             SET name = :name, email = :email, phone = :phone, address = :address, city = :city, postal_code = :postal_code
+             WHERE id = :id'
+        );
+        $profileStatement->execute([
+            'name' => $customerName,
+            'email' => $email,
+            'phone' => $phone,
+            'address' => $address,
+            'city' => $city,
+            'postal_code' => $postalCode,
+            'id' => $user['id'],
+        ]);
+
+        $_SESSION['user']['name'] = $customerName;
+        $_SESSION['user']['email'] = $email;
     }
 
     $pdo->commit();

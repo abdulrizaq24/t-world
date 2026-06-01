@@ -278,3 +278,248 @@ th {
     grid-template-columns: 1fr;
   }
 }
+
+.status-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333333;
+  font-weight: 800;
+}
+
+.status-filter select,
+.status-update-form select {
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.admin-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+}
+
+.admin-section p {
+  color: #555555;
+  line-height: 1.7;
+}
+
+.status-update-form {
+  display: grid;
+  gap: 16px;
+}
+
+.status-update-form label {
+  display: grid;
+  gap: 10px;
+  color: #333333;
+  font-weight: 800;
+}
+
+.order-totals {
+  width: min(100%, 360px);
+  margin: 24px 0 0 auto;
+}
+
+@media (max-width: 920px) {
+  .admin-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.current-product-image {
+  width: min(100%, 260px);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.current-product-image img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.admin-filters {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(180px, 240px) minmax(180px, 240px) auto;
+  align-items: end;
+  gap: 14px;
+  margin: 0 0 20px;
+  padding: 16px;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.admin-filters label {
+  display: grid;
+  gap: 8px;
+  color: #333333;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.admin-filters input,
+.admin-filters select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  background: #ffffff;
+  font: inherit;
+}
+
+.filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-actions .btn {
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.admin-empty {
+  margin: 0;
+  padding: 18px;
+  color: #555555;
+  border: 1px dashed #dddddd;
+  border-radius: 8px;
+  background: #fafafa;
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  .admin-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-actions {
+    flex-wrap: wrap;
+  }
+}
+
+.two-field-filter {
+  grid-template-columns: minmax(240px, 1fr) auto;
+}
+
+.customer-stats .stat-card strong {
+  font-size: 1.45rem;
+}
+
+.customer-detail-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.customer-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 18px;
+}
+
+.customer-status-row span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  color: #555555;
+  border: 1px solid #eeeeee;
+  border-radius: 999px;
+  background: #fafafa;
+  font-weight: 700;
+}
+
+.customer-status-row strong {
+  margin-left: 4px;
+  color: #111111;
+}
+
+.dashboard-stats {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.warning-card {
+  border-color: #f5c2c7;
+  background: #fff8f8;
+}
+
+.warning-card span,
+.warning-card strong {
+  color: #842029;
+}
+
+.low-stock-row {
+  background: #fffafa;
+}
+
+.stock-warning {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  margin-left: 8px;
+  padding: 0 8px;
+  color: #842029;
+  border-radius: 999px;
+  background: #f8d7da;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+@media (max-width: 1100px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.table-actions .danger-link {
+  color: #842029;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.pagination a {
+  min-width: 40px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  color: #111111;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  background: #ffffff;
+  font-weight: 800;
+}
+
+.pagination a.active {
+  color: #ffffff;
+  border-color: #111111;
+  background: #111111;
+}

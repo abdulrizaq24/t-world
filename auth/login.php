@@ -6,31 +6,36 @@ require_once __DIR__ . '/../includes/functions.php';
 $pageTitle = 'T-World | Login';
 $pageCss = ['auth.css'];
 $error = '';
+$success = flash('success');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
+    if (!csrf_token_is_valid($_POST['csrf_token'] ?? null)) {
+        $error = 'Your session security token expired. Please try again.';
+    } else {
+        $email = trim($_POST['email'] ?? '');
+        $password = $_POST['password'] ?? '';
 
-    global $pdo;
+        global $pdo;
 
-    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
-    $statement->execute(['email' => $email]);
-    $user = $statement->fetch();
+        $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
+        $statement->execute(['email' => $email]);
+        $user = $statement->fetch();
 
-    if ($user && password_verify($password, $user['password_hash'])) {
-        session_regenerate_id(true);
+        if ($user && password_verify($password, $user['password_hash'])) {
+            session_regenerate_id(true);
 
-        $_SESSION['user'] = [
-            'id' => (int) $user['id'],
-            'name' => $user['name'],
-            'email' => $user['email'],
-            'role' => $user['role'],
-        ];
+            $_SESSION['user'] = [
+                'id' => (int) $user['id'],
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'role' => $user['role'],
+            ];
 
-        redirect_to($user['role'] === 'admin' ? '../admin/dashboard.php' : '../index.php');
+            redirect_to($user['role'] === 'admin' ? '../admin/dashboard.php' : '../index.php');
+        }
+
+        $error = 'Invalid email or password.';
     }
-
-    $error = 'Invalid email or password.';
 }
 
 require_once __DIR__ . '/../includes/header.php';
@@ -43,11 +48,16 @@ require_once __DIR__ . '/../includes/header.php';
           <h1>Login</h1>
           <p class="auth-intro">Sign in to manage your T-World orders.</p>
 
+          <?php if ($success): ?>
+            <p class="auth-success"><?= h($success) ?></p>
+          <?php endif; ?>
+
           <?php if ($error): ?>
             <p class="auth-error"><?= h($error) ?></p>
           <?php endif; ?>
 
           <form class="auth-form" method="post">
+            <?= csrf_input() ?>
             <label>
               Email address
               <input type="email" name="email" value="<?= h($email ?? '') ?>" placeholder="you@example.com" required />

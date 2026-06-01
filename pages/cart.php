@@ -19,6 +19,7 @@ require_once __DIR__ . '/../includes/header.php';
 
         <div class="cart-layout">
           <form class="cart-items" method="post" action="../actions/update_cart.php" aria-label="Cart items">
+            <?= csrf_input() ?>
             <?php if (count($items) === 0): ?>
               <p class="empty-cart-message">
                 Your cart is empty. Start by adding a T-shirt from the shop.
@@ -65,6 +66,7 @@ require_once __DIR__ . '/../includes/header.php';
 
           <?php foreach ($items as $cartKey => $item): ?>
             <form id="remove-<?= h(md5($cartKey)) ?>" method="post" action="../actions/remove_from_cart.php" hidden>
+              <?= csrf_input() ?>
               <input type="hidden" name="cart_key" value="<?= h($cartKey) ?>" />
             </form>
           <?php endforeach; ?>

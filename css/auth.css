@@ -26,13 +26,22 @@
   line-height: 1.7;
 }
 
+.auth-success,
 .auth-error {
   margin: 18px 0 0;
   padding: 12px;
-  color: #842029;
-  background: #f8d7da;
   border-radius: 4px;
   font-weight: 700;
+}
+
+.auth-success {
+  color: #0f5132;
+  background: #d1e7dd;
+}
+
+.auth-error {
+  color: #842029;
+  background: #f8d7da;
 }
 
 .auth-form {

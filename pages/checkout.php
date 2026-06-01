@@ -7,8 +7,27 @@ $pageTitle = 'T-World | Checkout';
 $pageCss = ['checkout.css'];
 $items = cart_items();
 $user = current_user();
+$customer = null;
 $orderSuccess = $_SESSION['order_success'] ?? null;
 $checkoutError = flash('checkout_error');
+
+if ($user) {
+    global $pdo;
+
+    $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
+    $statement->execute(['id' => $user['id']]);
+    $customer = $statement->fetch() ?: null;
+}
+
+$fullName = trim((string) ($customer['name'] ?? $user['name'] ?? ''));
+$nameParts = preg_split('/\s+/', $fullName, 2) ?: [];
+$firstName = $nameParts[0] ?? '';
+$lastName = $nameParts[1] ?? '';
+$email = $customer['email'] ?? $user['email'] ?? '';
+$phone = $customer['phone'] ?? '';
+$address = $customer['address'] ?? '';
+$city = $customer['city'] ?? '';
+$postalCode = $customer['postal_code'] ?? '';
 
 require_once __DIR__ . '/../includes/header.php';
 
@@ -41,16 +60,17 @@ require_once __DIR__ . '/../includes/header.php';
         <?php else: ?>
           <div class="checkout-layout">
             <form class="checkout-form" method="post" action="../actions/place_order.php">
+              <?= csrf_input() ?>
               <section class="form-section">
                 <h2>Contact Information</h2>
                 <div class="form-grid">
                   <label>
                     Email address
-                    <input type="email" name="email" value="<?= h($user['email'] ?? '') ?>" placeholder="you@example.com" required />
+                    <input type="email" name="email" value="<?= h($email) ?>" placeholder="you@example.com" required />
                   </label>
                   <label>
                     Phone number
-                    <input type="tel" name="phone" placeholder="+1 555 000 0000" required />
+                    <input type="tel" name="phone" value="<?= h($phone) ?>" placeholder="+1 555 000 0000" required />
                   </label>
                 </div>
               </section>
@@ -60,23 +80,23 @@ require_once __DIR__ . '/../includes/header.php';
                 <div class="form-grid">
                   <label>
                     First name
-                    <input type="text" name="first_name" required />
+                    <input type="text" name="first_name" value="<?= h($firstName) ?>" required />
                   </label>
                   <label>
                     Last name
-                    <input type="text" name="last_name" required />
+                    <input type="text" name="last_name" value="<?= h($lastName) ?>" required />
                   </label>
                   <label class="full-field">
                     Address
-                    <input type="text" name="address" required />
+                    <input type="text" name="address" value="<?= h($address) ?>" required />
                   </label>
                   <label>
                     City
-                    <input type="text" name="city" required />
+                    <input type="text" name="city" value="<?= h($city) ?>" required />
                   </label>
                   <label>
                     Postal code
-                    <input type="text" name="postal_code" required />
+                    <input type="text" name="postal_code" value="<?= h($postalCode) ?>" required />
                   </label>
                 </div>
               </section>

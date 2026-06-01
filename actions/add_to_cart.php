@@ -8,6 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect_to('../pages/shop.php');
 }
 
+require_valid_csrf('../pages/shop.php', 'cart_error');
+
 $productId = (int) ($_POST['product_id'] ?? 0);
 $size = $_POST['size'] ?? 'M';
 $quantity = max(1, (int) ($_POST['quantity'] ?? 1));
