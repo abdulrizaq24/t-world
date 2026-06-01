@@ -118,6 +118,10 @@
     margin-top: 18px;
 }
 
+.update-cart-button {
+    justify-self: start;
+}
+
 .continue-shopping {
     display: block;
     margin-top: 16px;

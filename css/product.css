@@ -63,6 +63,18 @@
     line-height: 1.8;
 }
 
+.product-message {
+    margin: 22px 0 0;
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.error-message {
+    color: #842029;
+    background: #f8d7da;
+}
+
 .product-form {
     display: grid;
     gap: 24px;

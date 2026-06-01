@@ -37,6 +37,26 @@
     font-size: 1.2rem;
 }
 
+.checkout-message {
+    margin-bottom: 24px;
+}
+
+.checkout-message p {
+    margin: 0;
+    color: #555555;
+    line-height: 1.7;
+}
+
+.error-message {
+    color: #842029;
+    background: #f8d7da;
+}
+
+.error-message p {
+    color: #842029;
+    font-weight: 700;
+}
+
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
