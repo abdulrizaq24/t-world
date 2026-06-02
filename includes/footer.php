@@ -16,10 +16,10 @@
 
           <div>
             <h2>Support</h2>
-            <a href="#">Contact</a>
-            <a href="#">Shipping</a>
-            <a href="#">Returns</a>
-            <a href="#">Size Guide</a>
+            <a href="<?= h(base_path('pages/contact.php')) ?>">Contact</a>
+            <a href="<?= h(base_path('pages/shipping.php')) ?>">Shipping</a>
+            <a href="<?= h(base_path('pages/returns.php')) ?>">Returns</a>
+            <a href="<?= h(base_path('pages/size_guide.php')) ?>">Size Guide</a>
           </div>
         </div>
       </div>

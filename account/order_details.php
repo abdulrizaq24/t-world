@@ -25,6 +25,13 @@ if (!$order) {
 
 $items = get_order_items($orderId);
 $statuses = order_statuses();
+$returnStatuses = return_statuses();
+$returnRequest = get_order_return_request($orderId);
+$returnError = flash('return_error');
+$returnSuccess = flash('return_success');
+$shippingSteps = ['pending', 'processing', 'shipped', 'delivered'];
+$currentStepIndex = array_search($order['status'], $shippingSteps, true);
+$canRequestReturn = in_array($order['status'], ['shipped', 'delivered'], true) && !$returnRequest;
 $pageTitle = 'T-World | Order #' . $order['id'];
 $pageCss = ['account.css'];
 
@@ -47,6 +54,14 @@ require_once __DIR__ . '/../includes/header.php';
           <a class="active" href="orders.php">Orders</a>
         </nav>
 
+        <?php if ($returnError): ?>
+          <p class="account-message error"><?= h($returnError) ?></p>
+        <?php endif; ?>
+
+        <?php if ($returnSuccess): ?>
+          <p class="account-message success"><?= h($returnSuccess) ?></p>
+        <?php endif; ?>
+
         <div class="account-detail-grid">
           <article class="account-panel">
             <h2>Shipping Info</h2>
@@ -61,6 +76,41 @@ require_once __DIR__ . '/../includes/header.php';
             <span class="status <?= h($order['status']) ?>"><?= h($statuses[$order['status']] ?? $order['status']) ?></span>
           </article>
         </div>
+
+        <article class="account-panel process-panel">
+          <h2>Shipping Progress</h2>
+          <div class="process-steps">
+            <?php foreach ($shippingSteps as $index => $step): ?>
+              <div class="process-step <?= $currentStepIndex !== false && $index <= $currentStepIndex ? 'complete' : '' ?>">
+                <span><?= h((string) ($index + 1)) ?></span>
+                <strong><?= h($statuses[$step]) ?></strong>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </article>
+
+        <article class="account-panel process-panel">
+          <h2>Return Process</h2>
+          <?php if ($returnRequest): ?>
+            <p><strong>Status:</strong> <span class="status <?= h($returnRequest['status']) ?>"><?= h($returnStatuses[$returnRequest['status']] ?? $returnRequest['status']) ?></span></p>
+            <p><strong>Reason:</strong> <?= h($returnRequest['reason']) ?></p>
+            <?php if (!empty($returnRequest['admin_note'])): ?>
+              <p><strong>Admin note:</strong> <?= h($returnRequest['admin_note']) ?></p>
+            <?php endif; ?>
+          <?php elseif ($canRequestReturn): ?>
+            <form class="account-form" method="post" action="../actions/request_return.php">
+              <?= csrf_input() ?>
+              <input type="hidden" name="order_id" value="<?= h($order['id']) ?>" />
+              <label>
+                Return reason
+                <textarea name="reason" rows="4" required></textarea>
+              </label>
+              <button class="btn btn-primary" type="submit">Request Return</button>
+            </form>
+          <?php else: ?>
+            <p>Returns can be requested after your order has shipped.</p>
+          <?php endif; ?>
+        </article>
 
         <div class="account-panel">
           <h2>Items</h2>

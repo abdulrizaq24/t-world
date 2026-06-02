@@ -1,4 +1,4 @@
-body {
+﻿body {
   background: #f6f6f6;
 }
 
@@ -169,7 +169,14 @@ th {
   background: #fff3cd;
 }
 
-.status.pending {
+.status.requested {
+  color: #664d03;
+  background: #fff3cd;
+}
+
+.status.pending,
+.status.cancelled,
+.status.rejected {
   color: #842029;
   background: #f8d7da;
 }
@@ -522,4 +529,20 @@ th {
   color: #ffffff;
   border-color: #111111;
   background: #111111;
+}
+
+
+.status.delivered,
+.status.approved,
+.status.received,
+.status.refunded {
+  color: #0f5132;
+  background: #d1e7dd;
+}
+
+.return-note {
+  margin-top: 16px;
+  padding: 14px;
+  border-left: 4px solid #111111;
+  background: #fafafa;
 }

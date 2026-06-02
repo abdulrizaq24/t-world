@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $basePath = '../';
 require_once __DIR__ . '/../includes/functions.php';
@@ -68,6 +68,7 @@ $pagination = pagination_links('customers.php', [
         <nav class="admin-nav" aria-label="Admin navigation">
           <a href="dashboard.php">Dashboard</a>
           <a href="orders.php">Orders</a>
+          <a href="returns.php">Returns</a>
           <a class="active" href="customers.php">Customers</a>
           <a href="dashboard.php#products">Products</a>
           <a href="../pages/shop.php">View Store</a>

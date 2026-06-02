@@ -1,4 +1,4 @@
-# T-World
+﻿# T-World
 
 An e-commerce website for selling T-shirts.
 
@@ -76,6 +76,10 @@ pages/shop.php
 pages/product_details.php
 pages/cart.php
 pages/checkout.php
+pages/contact.php
+pages/shipping.php
+pages/returns.php
+pages/size_guide.php
 auth/login.php
 auth/register.php
 account/profile.php
@@ -85,6 +89,8 @@ admin/dashboard.php
 admin/product_form.php
 admin/orders.php
 admin/order_details.php
+admin/returns.php
+admin/return_details.php
 ```
 
 The older `.html` files are static prototypes from the first build phase. Use the `.php` pages for the database-backed version.
@@ -93,15 +99,17 @@ The older `.html` files are static prototypes from the first build phase. Use th
 
 - Product catalog from MySQL
 - Product details from MySQL
+- Support pages for contact, shipping, returns, and size guide
 - Session cart
 - Checkout creates orders and order items
 - Checkout pre-fills saved customer details
 - Stock reduces after checkout
 - Customer registration, login, profile editing, saved shipping details, and stronger form validation
-- Customer order history, order details, and status summaries
+- Customer order history, order details, shipping progress, return requests, and status summaries
 - Admin dashboard with product search/category/status/low-stock filters
 - Admin create/edit/hide/delete products with low-stock warnings and order-history protection
 - Admin view/update order statuses with order search/status filters and pagination
+- Admin view/update return requests with internal notes
 - CSRF protection for admin, customer, cart, checkout, login, and registration POST forms
 - Admin customer list and detail pages with search, pagination, order counts, and total spent
 
@@ -117,3 +125,23 @@ Allowed image types: JPG, PNG, WEBP. Maximum size: 2MB.
 
 When an uploaded product image is replaced or a safe-deleted product is removed, old files inside uploads/products are cleaned up automatically. Seeded images inside images are not deleted.
 
+
+## Image Mapping
+
+Current site images are mapped like this:
+
+```text
+images/hero-shirt-placeholder.jpg  <- heroimage.jpg
+images/category-plain.jpg          <- plain t-shirts brown.jpg
+images/category-oversized.jpg      <- oversized2.jpg
+images/category-graphic.jpg        <- graphic t-shirts.jpg
+images/category-new.jpg            <- newarrivals1.jpg
+images/product-1.jpg               <- productimg1.jpg
+images/product-2.jpg               <- productimg2.jpg
+images/product-3.jpg               <- productimg3.jpg
+images/product-4.jpg               <- productimg4.jpg
+images/product-5.jpg               <- productimg5.jpg
+images/product-6.jpg               <- productimg6.jpg
+```
+
+The original uploaded files are kept in `images` as backups.

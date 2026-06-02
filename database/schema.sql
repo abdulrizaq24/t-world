@@ -1,7 +1,8 @@
-CREATE DATABASE IF NOT EXISTS t_world CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+﻿CREATE DATABASE IF NOT EXISTS t_world CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE t_world;
 
 SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS return_requests;
 DROP TABLE IF EXISTS order_items;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS products;
@@ -47,7 +48,7 @@ CREATE TABLE orders (
     subtotal DECIMAL(10, 2) NOT NULL,
     shipping DECIMAL(10, 2) NOT NULL,
     total DECIMAL(10, 2) NOT NULL,
-    status ENUM('pending', 'processing', 'shipped', 'cancelled') NOT NULL DEFAULT 'pending',
+    status ENUM('pending', 'processing', 'shipped', 'delivered', 'cancelled') NOT NULL DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_orders_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
     INDEX idx_orders_status (status),
@@ -67,6 +68,21 @@ CREATE TABLE order_items (
     INDEX idx_order_items_order (order_id)
 );
 
+
+CREATE TABLE return_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    user_id INT NOT NULL,
+    reason TEXT NOT NULL,
+    status ENUM('requested', 'approved', 'rejected', 'received', 'refunded') NOT NULL DEFAULT 'requested',
+    admin_note TEXT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_return_order FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    CONSTRAINT fk_return_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_return_order (order_id),
+    INDEX idx_return_status (status)
+);
 INSERT INTO products (name, category, description, price, stock, image_url) VALUES
 ('Classic Black Tee', 'plain', 'A clean everyday T-shirt with a soft cotton feel and relaxed shape.', 24.99, 34, 'images/product-1.jpg'),
 ('Oversized White Tee', 'oversized', 'A relaxed oversized T-shirt made for easy streetwear styling.', 29.99, 21, 'images/product-2.jpg'),
@@ -77,4 +93,6 @@ INSERT INTO products (name, category, description, price, stock, image_url) VALU
 
 INSERT INTO users (name, email, password_hash, role) VALUES
 ('Admin User', 'admin@t-world.test', '$2y$10$GOW/BEL0hWOZuYYlw8jk/OwwMJbgjQPkJXWgrXpKdNocFT8eS8NoK', 'admin');
+
+
 

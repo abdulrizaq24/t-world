@@ -14,6 +14,8 @@ if (!$order) {
 
 $items = get_order_items($orderId);
 $statuses = order_statuses();
+$returnStatuses = return_statuses();
+$returnRequest = get_order_return_request($orderId);
 $adminSuccess = flash('admin_success');
 $adminError = flash('admin_error');
 
@@ -35,6 +37,7 @@ $adminError = flash('admin_error');
         <nav class="admin-nav" aria-label="Admin navigation">
           <a href="dashboard.php">Dashboard</a>
           <a class="active" href="orders.php">Orders</a>
+          <a href="returns.php">Returns</a>
           <a href="customers.php">Customers</a>
           <a href="dashboard.php#products">Products</a>
           <a href="../pages/shop.php">View Store</a>
@@ -88,6 +91,20 @@ $adminError = flash('admin_error');
           </article>
         </section>
 
+        <?php if ($returnRequest): ?>
+          <section class="admin-section">
+            <div class="section-title">
+              <h2>Return Request</h2>
+              <span class="status <?= h($returnRequest['status']) ?>"><?= h($returnStatuses[$returnRequest['status']] ?? $returnRequest['status']) ?></span>
+            </div>
+            <p><strong>Reason:</strong> <?= nl2br(h($returnRequest['reason'])) ?></p>
+            <?php if (!empty($returnRequest['admin_note'])): ?>
+              <p class="return-note"><strong>Admin note:</strong><br /><?= nl2br(h($returnRequest['admin_note'])) ?></p>
+            <?php endif; ?>
+            <a class="btn btn-secondary" href="return_details.php?id=<?= h($returnRequest['id']) ?>">Manage Return</a>
+          </section>
+        <?php endif; ?>
+
         <section class="admin-section">
           <div class="section-title">
             <h2>Items</h2>
@@ -138,3 +155,5 @@ $adminError = flash('admin_error');
     </div>
   </body>
 </html>
+
+

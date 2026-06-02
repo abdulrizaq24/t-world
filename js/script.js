@@ -58,3 +58,24 @@ if (productSearch) {
     focusShopSearch();
     window.addEventListener("hashchange", focusShopSearch);
 }
+
+const tiltCard = document.querySelector('[data-tilt-card]');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (tiltCard && !reduceMotion) {
+    const tiltLimit = 9;
+
+    tiltCard.addEventListener('mousemove', (event) => {
+        const rect = tiltCard.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+        tiltCard.style.setProperty('--tilt-y', `${x * tiltLimit}deg`);
+        tiltCard.style.setProperty('--tilt-x', `${y * -tiltLimit}deg`);
+    });
+
+    tiltCard.addEventListener('mouseleave', () => {
+        tiltCard.style.setProperty('--tilt-y', '0deg');
+        tiltCard.style.setProperty('--tilt-x', '0deg');
+    });
+}

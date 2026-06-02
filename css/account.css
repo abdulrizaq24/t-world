@@ -1,4 +1,4 @@
-.account-page {
+﻿.account-page {
     width: min(1120px, calc(100% - 32px));
     margin: 0 auto;
     padding: 72px 0 88px;
@@ -170,7 +170,8 @@
     font-weight: 800;
 }
 
-.account-form input {
+.account-form input,
+.account-form textarea {
     width: 100%;
     min-height: 48px;
     padding: 0 14px;
@@ -268,6 +269,92 @@
 @media (max-width: 560px) {
     .account-stats,
     .order-status-summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.account-form textarea {
+    min-height: 120px;
+    padding: 12px 14px;
+    resize: vertical;
+}
+
+.account-form textarea:focus {
+    outline: 2px solid #111111;
+    outline-offset: 2px;
+}
+
+.status.delivered,
+.status.approved,
+.status.received,
+.status.refunded {
+    color: #0f5132;
+    background: #d1e7dd;
+}
+
+.status.requested {
+    color: #664d03;
+    background: #fff3cd;
+}
+
+.status.rejected {
+    color: #842029;
+    background: #f8d7da;
+}
+
+.process-panel {
+    margin-bottom: 24px;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.process-step {
+    min-height: 92px;
+    padding: 14px;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+.process-step span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-bottom: 10px;
+    color: #666666;
+    border: 1px solid #dddddd;
+    border-radius: 999px;
+    background: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.process-step strong {
+    display: block;
+    color: #333333;
+}
+
+.process-step.complete {
+    border-color: #badbcc;
+    background: #f4fbf7;
+}
+
+.process-step.complete span {
+    color: #ffffff;
+    border-color: #0f5132;
+    background: #0f5132;
+}
+
+@media (max-width: 720px) {
+    .process-steps {
         grid-template-columns: 1fr;
     }
 }

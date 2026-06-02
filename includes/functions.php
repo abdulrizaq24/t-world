@@ -176,6 +176,7 @@ function order_statuses(): array
         'pending' => 'Pending',
         'processing' => 'Processing',
         'shipped' => 'Shipped',
+        'delivered' => 'Delivered',
         'cancelled' => 'Cancelled',
     ];
 }
@@ -199,6 +200,28 @@ function get_order_items(int $orderId): array
     $statement->execute(['order_id' => $orderId]);
 
     return $statement->fetchAll();
+}
+
+function return_statuses(): array
+{
+    return [
+        'requested' => 'Requested',
+        'approved' => 'Approved',
+        'rejected' => 'Rejected',
+        'received' => 'Received',
+        'refunded' => 'Refunded',
+    ];
+}
+
+function get_order_return_request(int $orderId): ?array
+{
+    global $pdo;
+
+    $statement = $pdo->prepare('SELECT * FROM return_requests WHERE order_id = :order_id ORDER BY created_at DESC LIMIT 1');
+    $statement->execute(['order_id' => $orderId]);
+    $returnRequest = $statement->fetch();
+
+    return $returnRequest ?: null;
 }
 
 function cart_items(): array
@@ -303,5 +326,7 @@ function redirect_to(string $path): never
     header('Location: ' . $path);
     exit;
 }
+
+
 
 
