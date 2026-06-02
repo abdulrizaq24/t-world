@@ -24,17 +24,11 @@ require_once __DIR__ . '/includes/header.php';
           </div>
         </div>
 
-        <div class="hero-visual hero-visual-3d">
-          <div class="hero-3d-stage" data-tilt-card>
-            <span class="depth-panel depth-panel-back" aria-hidden="true"></span>
-            <span class="depth-panel depth-panel-mid" aria-hidden="true"></span>
-            <img
-              src="<?= h(base_path('images/hero-shirt-placeholder.jpg')) ?>"
-              alt="Featured T-shirt from T-World"
-              onerror="this.hidden = true"
-            />
-            <span class="hero-shadow" aria-hidden="true"></span>
-          </div>
+        <div class="hero-visual">
+          <img
+            src="<?= h(base_path('images/hero-shirt-placeholder.jpg')) ?>"
+            alt="Featured T-shirt from T-World"
+          />
         </div>
       </section>
 
