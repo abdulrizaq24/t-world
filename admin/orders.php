@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 $basePath = '../';
 require_once __DIR__ . '/../includes/functions.php';
@@ -154,7 +154,21 @@ $adminError = flash('admin_error');
                       <td>#TW-<?= h($order['id']) ?></td>
                       <td><?= h($order['customer_name']) ?></td>
                       <td><?= h($order['email']) ?></td>
-                      <td><span class="status <?= h($order['status']) ?>"><?= h($statuses[$order['status']] ?? $order['status']) ?></span></td>
+                      <td>
+                        <form class="inline-status-form" method="post" action="../actions/update_order_status.php">
+                          <?= csrf_input() ?>
+                          <input type="hidden" name="order_id" value="<?= h($order['id']) ?>" />
+                          <input type="hidden" name="redirect_to" value="../admin/orders.php?<?= h(http_build_query(['search' => $orderSearch, 'status' => $status, 'page' => $currentPage])) ?>" />
+                          <select name="status" aria-label="Order #TW-<?= h($order['id']) ?> status">
+                            <?php foreach ($statuses as $value => $label): ?>
+                              <option value="<?= h($value) ?>" <?= $order['status'] === $value ? 'selected' : '' ?>>
+                                <?= h($label) ?>
+                              </option>
+                            <?php endforeach; ?>
+                          </select>
+                          <button type="submit">Update</button>
+                        </form>
+                      </td>
                       <td><?= h(money((float) $order['total'])) ?></td>
                       <td><?= h(date('M j, Y', strtotime($order['created_at']))) ?></td>
                       <td><a href="order_details.php?id=<?= h($order['id']) ?>">View</a></td>

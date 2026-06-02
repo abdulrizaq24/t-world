@@ -10,7 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect_to('../admin/orders.php');
 }
 
-require_valid_csrf('../admin/orders.php');
+$redirectPath = $_POST['redirect_to'] ?? '../admin/orders.php';
+if (!is_string($redirectPath) || !str_starts_with($redirectPath, '../admin/')) {
+    $redirectPath = '../admin/orders.php';
+}
+
+require_valid_csrf($redirectPath);
 
 global $pdo;
 
@@ -19,7 +24,7 @@ $status = $_POST['status'] ?? '';
 
 if (!$orderId || !array_key_exists($status, order_statuses())) {
     set_flash('admin_error', 'Invalid order status.');
-    redirect_to('../admin/orders.php');
+    redirect_to($redirectPath);
 }
 
 $statement = $pdo->prepare('UPDATE orders SET status = :status WHERE id = :id');
@@ -29,4 +34,4 @@ $statement->execute([
 ]);
 
 set_flash('admin_success', 'Order status updated.');
-redirect_to('../admin/order_details.php?id=' . $orderId);
+redirect_to($redirectPath);

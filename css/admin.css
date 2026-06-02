@@ -546,3 +546,31 @@ th {
   border-left: 4px solid #111111;
   background: #fafafa;
 }
+
+.inline-status-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 230px;
+}
+
+.inline-status-form select {
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  background: #ffffff;
+  font: inherit;
+  font-weight: 700;
+}
+
+.inline-status-form button {
+  min-height: 38px;
+  padding: 0 12px;
+  color: #ffffff;
+  border: 1px solid #111111;
+  border-radius: 4px;
+  background: #111111;
+  font: inherit;
+  font-weight: 800;
+}

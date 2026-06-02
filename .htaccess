@@ -1,1 +1,12 @@
-DirectoryIndex index.php index.html
+﻿DirectoryIndex index.php index.html
+
+RewriteEngine On
+RewriteBase /t-world/
+RewriteRule ^index\.html$ /t-world/index.php [R=302,L]
+RewriteRule ^auth/login\.html$ /t-world/auth/login.php [R=302,L]
+RewriteRule ^auth/register\.html$ /t-world/auth/register.php [R=302,L]
+RewriteRule ^pages/shop\.html$ /t-world/pages/shop.php [R=302,L]
+RewriteRule ^pages/product_details\.html$ /t-world/pages/product_details.php [R=302,L]
+RewriteRule ^pages/cart\.html$ /t-world/pages/cart.php [R=302,L]
+RewriteRule ^pages/checkout\.html$ /t-world/pages/checkout.php [R=302,L]
+RewriteRule ^admin/dashboard\.html$ /t-world/admin/dashboard.php [R=302,L]
