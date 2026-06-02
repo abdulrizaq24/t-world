@@ -24,7 +24,7 @@ require_once __DIR__ . '/includes/header.php';
           </div>
         </div>
 
-        <div class="hero-visual hero-visual-3d image-placeholder" data-label="Add hero photo">
+        <div class="hero-visual hero-visual-3d">
           <div class="hero-3d-stage" data-tilt-card>
             <span class="depth-panel depth-panel-back" aria-hidden="true"></span>
             <span class="depth-panel depth-panel-mid" aria-hidden="true"></span>

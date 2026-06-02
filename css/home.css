@@ -302,3 +302,24 @@
         object-fit: cover;
     }
 }
+
+.hero-visual::before {
+    content: none;
+}
+
+.hero-visual {
+    position: relative;
+    isolation: isolate;
+    background: #f2f2f2;
+}
+
+.hero-3d-stage,
+.hero-3d-stage img {
+    visibility: visible;
+    opacity: 1;
+}
+
+.hero-3d-stage img {
+    position: relative;
+    z-index: 5;
+}

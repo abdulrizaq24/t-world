@@ -13,9 +13,9 @@ $cartCount = cart_count();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?= h($pageTitle) ?></title>
-    <link rel="stylesheet" href="<?= h(base_path('css/style.css')) ?>" />
+    <link rel="stylesheet" href="<?= h(base_path('css/style.css') . '?v=' . filemtime(__DIR__ . '/../css/style.css')) ?>" />
     <?php foreach ($pageCss as $cssFile): ?>
-      <link rel="stylesheet" href="<?= h(base_path('css/' . $cssFile)) ?>" />
+      <link rel="stylesheet" href="<?= h(base_path('css/' . $cssFile) . '?v=' . filemtime(__DIR__ . '/../css/' . $cssFile)) ?>" />
     <?php endforeach; ?>
   </head>
   <body>
