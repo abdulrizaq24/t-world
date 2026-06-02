@@ -171,6 +171,13 @@ $pagination = pagination_links('customers.php', [
                             <a href="customer_details.php?id=<?= h($customer['user_id']) ?>">Details</a>
                           <?php endif; ?>
                           <a href="orders.php?search=<?= urlencode((string) $customer['email']) ?>&status=all">Orders</a>
+                          <form method="post" action="../actions/delete_customer.php" onsubmit="return confirm('Delete this customer and their order history?');">
+                            <?= csrf_input() ?>
+                            <input type="hidden" name="customer_type" value="<?= (int) $customer['is_registered'] === 1 ? 'account' : 'guest' ?>" />
+                            <input type="hidden" name="user_id" value="<?= h($customer['user_id']) ?>" />
+                            <input type="hidden" name="email" value="<?= h($customer['email']) ?>" />
+                            <button class="danger-link" type="submit">Delete</button>
+                          </form>
                         </div>
                       </td>
                     </tr>
