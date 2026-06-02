@@ -8,20 +8,27 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect_to('../pages/shop.php');
 }
 
-require_valid_csrf('../pages/shop.php', 'cart_error');
-
 $productId = (int) ($_POST['product_id'] ?? 0);
+$redirectPath = '../pages/product_details.php?id=' . $productId;
+
+if ($productId <= 0) {
+    $redirectPath = '../pages/shop.php';
+}
+
+require_valid_csrf($redirectPath, 'cart_error');
+
 $size = $_POST['size'] ?? 'M';
 $quantity = max(1, (int) ($_POST['quantity'] ?? 1));
 $product = get_product($productId);
 
 if (!$product) {
+    set_flash('cart_error', 'That product could not be found.');
     redirect_to('../pages/shop.php');
 }
 
 if ((int) $product['stock'] <= 0) {
     set_flash('cart_error', 'This product is currently out of stock.');
-    redirect_to('../pages/product_details.php?id=' . $productId);
+    redirect_to($redirectPath);
 }
 
 if (!in_array($size, allowed_sizes(), true)) {

@@ -75,7 +75,18 @@ require_once __DIR__ . '/../includes/header.php';
               <div class="product-info">
                 <h2><?= h($product['name']) ?></h2>
                 <p><?= h(money((float) $product['price'])) ?></p>
-                <a href="product_details.php?id=<?= h((string) $product['id']) ?>">View Product</a>
+                <div class="product-card-actions">
+                  <a href="product_details.php?id=<?= h((string) $product['id']) ?>">View Product</a>
+                  <form method="post" action="../actions/add_to_cart.php">
+                    <?= csrf_input() ?>
+                    <input type="hidden" name="product_id" value="<?= h((string) $product['id']) ?>" />
+                    <input type="hidden" name="size" value="M" />
+                    <input type="hidden" name="quantity" value="1" />
+                    <button type="submit" <?= (int) $product['stock'] <= 0 ? 'disabled' : '' ?>>
+                      <?= (int) $product['stock'] > 0 ? 'Add' : 'Sold out' ?>
+                    </button>
+                  </form>
+                </div>
               </div>
             </article>
           <?php endforeach; ?>
@@ -83,3 +94,4 @@ require_once __DIR__ . '/../includes/header.php';
       </section>
     </main>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+

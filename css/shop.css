@@ -124,3 +124,34 @@
         grid-template-columns: 1fr;
     }
 }
+
+.product-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.product-card-actions form {
+    margin: 0;
+}
+
+.product-card-actions button {
+    min-height: 38px;
+    padding: 0 14px;
+    color: #ffffff;
+    border: 1px solid #111111;
+    border-radius: 4px;
+    background: #111111;
+    font-weight: 800;
+}
+
+.product-card-actions button:hover {
+    background: #333333;
+}
+
+.product-card-actions button:disabled {
+    color: #777777;
+    border-color: #dddddd;
+    background: #f2f2f2;
+}

@@ -283,3 +283,22 @@
         animation: none;
     }
 }
+.hero-3d-stage {
+    z-index: 1;
+}
+
+@media (max-width: 720px) {
+    .hero-visual {
+        min-height: 300px;
+        padding: 28px 0;
+    }
+
+    .hero-3d-stage {
+        width: min(76vw, 260px);
+    }
+
+    .hero-3d-stage img {
+        min-height: 0;
+        object-fit: cover;
+    }
+}
