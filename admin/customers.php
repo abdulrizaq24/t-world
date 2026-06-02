@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 $basePath = '../';
 require_once __DIR__ . '/../includes/functions.php';
@@ -11,30 +11,63 @@ $customerSearch = trim($_GET['search'] ?? '');
 $params = [];
 $perPage = 10;
 $currentPage = max(1, (int) ($_GET['page'] ?? 1));
-$whereSql = " WHERE users.role = 'customer'";
-$sql = "SELECT users.id, users.name, users.email, users.phone, users.city, users.created_at,
-               COUNT(orders.id) AS total_orders,
-               COALESCE(SUM(orders.total), 0) AS total_spent,
-               MAX(orders.created_at) AS latest_order_date
+$searchSql = '';
+
+$baseCustomerSql = "
+    SELECT * FROM (
+        SELECT
+            CONCAT('user-', users.id) AS customer_key,
+            users.id AS user_id,
+            users.name,
+            users.email,
+            users.phone,
+            users.city,
+            users.created_at,
+            1 AS is_registered,
+            COUNT(orders.id) AS total_orders,
+            COALESCE(SUM(orders.total), 0) AS total_spent,
+            MAX(orders.created_at) AS latest_order_date
         FROM users
-        LEFT JOIN orders ON orders.user_id = users.id";
-$countSql = 'SELECT COUNT(*) FROM users';
+        LEFT JOIN orders ON orders.user_id = users.id
+        WHERE users.role = 'customer'
+        GROUP BY users.id, users.name, users.email, users.phone, users.city, users.created_at
+
+        UNION ALL
+
+        SELECT
+            CONCAT('guest-', MD5(orders.email)) AS customer_key,
+            NULL AS user_id,
+            MAX(orders.customer_name) AS name,
+            orders.email,
+            MAX(orders.phone) AS phone,
+            MAX(orders.city) AS city,
+            MIN(orders.created_at) AS created_at,
+            0 AS is_registered,
+            COUNT(orders.id) AS total_orders,
+            COALESCE(SUM(orders.total), 0) AS total_spent,
+            MAX(orders.created_at) AS latest_order_date
+        FROM orders
+        LEFT JOIN users ON users.email = orders.email
+        WHERE orders.user_id IS NULL AND users.id IS NULL
+        GROUP BY orders.email
+    ) AS customers
+";
 
 if ($customerSearch !== '') {
-    $whereSql .= ' AND (users.name LIKE :search OR users.email LIKE :search OR users.phone LIKE :search)';
+    $searchSql = ' WHERE (name LIKE :search OR email LIKE :search OR phone LIKE :search)';
     $params['search'] = '%' . $customerSearch . '%';
 }
 
-$countStatement = $pdo->prepare($countSql . $whereSql);
+$countStatement = $pdo->prepare('SELECT COUNT(*) FROM (' . $baseCustomerSql . $searchSql . ') AS counted_customers');
 $countStatement->execute($params);
 $totalCustomers = (int) $countStatement->fetchColumn();
 $totalPages = max(1, (int) ceil($totalCustomers / $perPage));
 $currentPage = min($currentPage, $totalPages);
 $offset = ($currentPage - 1) * $perPage;
 
-$sql .= $whereSql . ' GROUP BY users.id, users.name, users.email, users.phone, users.city, users.created_at
-          ORDER BY users.created_at DESC
-          LIMIT :limit OFFSET :offset';
+$sql = $baseCustomerSql . $searchSql . '
+        ORDER BY latest_order_date DESC, created_at DESC
+        LIMIT :limit OFFSET :offset';
 
 $statement = $pdo->prepare($sql);
 
@@ -112,6 +145,7 @@ $pagination = pagination_links('customers.php', [
                   <tr>
                     <th>Customer</th>
                     <th>Email</th>
+                    <th>Type</th>
                     <th>Phone</th>
                     <th>City</th>
                     <th>Orders</th>
@@ -125,6 +159,7 @@ $pagination = pagination_links('customers.php', [
                     <tr>
                       <td><?= h($customer['name']) ?></td>
                       <td><?= h($customer['email']) ?></td>
+                      <td><span class="status <?= (int) $customer['is_registered'] === 1 ? 'delivered' : 'processing' ?>"><?= (int) $customer['is_registered'] === 1 ? 'Account' : 'Guest' ?></span></td>
                       <td><?= h($customer['phone'] ?: 'Not saved') ?></td>
                       <td><?= h($customer['city'] ?: 'Not saved') ?></td>
                       <td><?= h((string) $customer['total_orders']) ?></td>
@@ -132,7 +167,9 @@ $pagination = pagination_links('customers.php', [
                       <td><?= h(date('M j, Y', strtotime($customer['created_at']))) ?></td>
                       <td>
                         <div class="table-actions">
-                          <a href="customer_details.php?id=<?= h($customer['id']) ?>">Details</a>
+                          <?php if ((int) $customer['is_registered'] === 1): ?>
+                            <a href="customer_details.php?id=<?= h($customer['user_id']) ?>">Details</a>
+                          <?php endif; ?>
                           <a href="orders.php?search=<?= urlencode((string) $customer['email']) ?>&status=all">Orders</a>
                         </div>
                       </td>
