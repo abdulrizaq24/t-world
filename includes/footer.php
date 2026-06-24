@@ -27,5 +27,8 @@
       <p class="footer-bottom">&copy; 2026 T-World. All rights reserved.</p>
     </footer>
     <script src="<?= h(base_path('js/script.js')) ?>"></script>
+    <?php foreach (($pageJs ?? []) as $jsFile): ?>
+      <script src="<?= h(base_path('js/' . $jsFile) . '?v=' . filemtime(__DIR__ . '/../js/' . $jsFile)) ?>" defer></script>
+    <?php endforeach; ?>
   </body>
 </html>

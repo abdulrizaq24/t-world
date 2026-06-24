@@ -1,0 +1,115 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <defs>
+    <style>
+      .bg { fill: #f6f6f6; }
+      .title { font: 800 34px Arial, sans-serif; fill: #111; }
+      .note { font: 400 15px Arial, sans-serif; fill: #555; }
+      .page { fill: #fff; stroke: #111; stroke-width: 2; rx: 10; }
+      .block { fill: #f1f1f1; stroke: #777; stroke-width: 1.5; rx: 6; }
+      .dark { fill: #dedede; }
+      .label { font: 800 18px Arial, sans-serif; fill: #111; }
+      .small { font: 400 13px Arial, sans-serif; fill: #333; }
+      .tiny { font: 700 11px Arial, sans-serif; fill: #555; }
+      .line { stroke: #999; stroke-width: 2; }
+      .btn { fill: #d8d8d8; stroke: #777; stroke-width: 1.5; rx: 5; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="1200" />
+  <text class="title" x="60" y="58">T-World Website Wireframe</text>
+  <text class="note" x="60" y="88">Low-fidelity layout of the main customer and admin screens.</text>
+
+  <!-- Home -->
+  <rect class="page" x="60" y="130" width="450" height="430" />
+  <text class="label" x="85" y="165">Home Page</text>
+  <rect class="block dark" x="85" y="185" width="400" height="42" />
+  <text class="tiny" x="100" y="211">Navbar: Logo | Home | Shop | Categories | Search | Cart | Login</text>
+  <rect class="block" x="85" y="250" width="180" height="130" />
+  <text class="small" x="105" y="285">Hero Text</text>
+  <line class="line" x1="105" y1="305" x2="230" y2="305" />
+  <line class="line" x1="105" y1="325" x2="215" y2="325" />
+  <rect class="btn" x="105" y="345" width="70" height="24" />
+  <rect class="btn" x="185" y="345" width="80" height="24" />
+  <rect class="block" x="285" y="250" width="200" height="130" />
+  <text class="small" x="340" y="320">Hero Photo</text>
+  <rect class="block" x="85" y="405" width="115" height="80" />
+  <rect class="block" x="225" y="405" width="115" height="80" />
+  <rect class="block" x="365" y="405" width="115" height="80" />
+  <text class="tiny" x="96" y="502">Featured product cards</text>
+  <rect class="block dark" x="85" y="520" width="400" height="24" />
+  <text class="tiny" x="245" y="536">Footer</text>
+
+  <!-- Shop/Product -->
+  <rect class="page" x="575" y="130" width="450" height="430" />
+  <text class="label" x="600" y="165">Shop + Product</text>
+  <rect class="block dark" x="600" y="185" width="400" height="42" />
+  <text class="tiny" x="615" y="211">Navbar</text>
+  <rect class="block" x="600" y="250" width="400" height="55" />
+  <text class="small" x="625" y="284">Filters + Search</text>
+  <rect class="block" x="600" y="330" width="115" height="150" />
+  <rect class="block" x="742" y="330" width="115" height="150" />
+  <rect class="block" x="885" y="330" width="115" height="150" />
+  <text class="tiny" x="635" y="500">Product Grid</text>
+  <rect class="block" x="600" y="515" width="190" height="30" />
+  <rect class="block" x="810" y="515" width="190" height="30" />
+
+  <!-- Cart/Checkout -->
+  <rect class="page" x="1090" y="130" width="450" height="430" />
+  <text class="label" x="1115" y="165">Cart + Checkout</text>
+  <rect class="block dark" x="1115" y="185" width="400" height="42" />
+  <text class="tiny" x="1130" y="211">Navbar</text>
+  <rect class="block" x="1115" y="255" width="250" height="70" />
+  <rect class="block" x="1115" y="345" width="250" height="70" />
+  <rect class="block" x="1115" y="435" width="250" height="70" />
+  <text class="tiny" x="1130" y="525">Cart Items</text>
+  <rect class="block" x="1385" y="255" width="130" height="250" />
+  <text class="small" x="1405" y="295">Order</text>
+  <text class="small" x="1405" y="318">Summary</text>
+  <rect class="btn" x="1405" y="455" width="90" height="28" />
+  <text class="tiny" x="1423" y="474">Checkout</text>
+
+  <!-- Auth -->
+  <rect class="page" x="60" y="640" width="450" height="430" />
+  <text class="label" x="85" y="675">Login / Register</text>
+  <rect class="block" x="145" y="720" width="280" height="280" />
+  <text class="small" x="170" y="755">Auth Panel</text>
+  <rect class="block" x="170" y="785" width="230" height="38" />
+  <text class="tiny" x="185" y="810">Email input</text>
+  <rect class="block" x="170" y="840" width="230" height="38" />
+  <text class="tiny" x="185" y="865">Password input + eye</text>
+  <rect class="btn" x="170" y="900" width="230" height="38" />
+  <text class="tiny" x="260" y="924">Submit</text>
+  <text class="tiny" x="207" y="965">Switch Login / Register</text>
+
+  <!-- Account -->
+  <rect class="page" x="575" y="640" width="450" height="430" />
+  <text class="label" x="600" y="675">Customer Account</text>
+  <rect class="block dark" x="600" y="700" width="400" height="42" />
+  <text class="tiny" x="615" y="726">Profile | Orders Tabs</text>
+  <rect class="block" x="600" y="770" width="180" height="100" />
+  <text class="small" x="625" y="812">Profile Info</text>
+  <rect class="block" x="805" y="770" width="195" height="100" />
+  <text class="small" x="830" y="812">Saved Shipping</text>
+  <rect class="block" x="600" y="900" width="400" height="55" />
+  <text class="tiny" x="620" y="932">Order history row</text>
+  <rect class="block" x="600" y="975" width="400" height="55" />
+  <text class="tiny" x="620" y="1007">Shipping progress / return process</text>
+
+  <!-- Admin -->
+  <rect class="page" x="1090" y="640" width="450" height="430" />
+  <text class="label" x="1115" y="675">Admin Dashboard</text>
+  <rect class="block dark" x="1115" y="700" width="95" height="330" />
+  <text class="tiny" x="1130" y="735">Sidebar</text>
+  <text class="tiny" x="1130" y="760">Orders</text>
+  <text class="tiny" x="1130" y="785">Returns</text>
+  <text class="tiny" x="1130" y="810">Customers</text>
+  <text class="tiny" x="1130" y="835">Products</text>
+  <rect class="block" x="1235" y="700" width="280" height="70" />
+  <text class="small" x="1260" y="742">Stats Cards</text>
+  <rect class="block" x="1235" y="795" width="280" height="90" />
+  <text class="small" x="1260" y="842">Orders Table + Status Update</text>
+  <rect class="block" x="1235" y="910" width="280" height="90" />
+  <text class="small" x="1260" y="957">Products / Customers / Returns</text>
+
+  <text class="note" x="60" y="1145">Wireframe purpose: show layout and page structure before detailed design. Boxes represent sections, forms, tables, cards, images, and admin controls.</text>
+</svg>

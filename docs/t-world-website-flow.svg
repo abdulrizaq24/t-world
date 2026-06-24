@@ -1,0 +1,169 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <defs>
+    <style>
+      .bg { fill: #f7f7f7; }
+      .title { font: 800 34px Arial, sans-serif; fill: #111; }
+      .subtitle { font: 400 17px Arial, sans-serif; fill: #555; }
+      .section { fill: #fff; stroke: #ddd; stroke-width: 2; rx: 12; }
+      .box { fill: #fff; stroke: #111; stroke-width: 2; rx: 8; }
+      .front { fill: #e8f3ff; stroke: #155fa0; }
+      .back { fill: #eef9ef; stroke: #2f7d32; }
+      .db { fill: #fff2df; stroke: #b86600; }
+      .session { fill: #f5eaff; stroke: #6b2eb8; }
+      .admin { fill: #fff0f0; stroke: #b32626; }
+      .text { font: 700 18px Arial, sans-serif; fill: #111; }
+      .small { font: 400 14px Arial, sans-serif; fill: #333; }
+      .label { font: 800 18px Arial, sans-serif; fill: #333; }
+      .arrow { stroke: #333; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 7 6; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1200" />
+  <text class="title" x="60" y="58">T-World Website Flow</text>
+  <text class="subtitle" x="60" y="88">How the frontend, PHP backend, sessions, admin tools, and MySQL database work together.</text>
+
+  <rect class="section" x="45" y="120" width="360" height="960" />
+  <text class="label" x="70" y="155">Frontend / Browser</text>
+
+  <rect class="section" x="460" y="120" width="390" height="960" />
+  <text class="label" x="485" y="155">Backend PHP</text>
+
+  <rect class="section" x="905" y="120" width="300" height="960" />
+  <text class="label" x="930" y="155">Sessions + Security</text>
+
+  <rect class="section" x="1260" y="120" width="295" height="960" />
+  <text class="label" x="1285" y="155">MySQL Database</text>
+
+  <!-- Frontend boxes -->
+  <rect class="box front" x="80" y="190" width="290" height="72" />
+  <text class="text" x="105" y="218">Home Page</text>
+  <text class="small" x="105" y="243">index.php</text>
+
+  <rect class="box front" x="80" y="290" width="290" height="72" />
+  <text class="text" x="105" y="318">Shop + Product Details</text>
+  <text class="small" x="105" y="343">shop.php, product_details.php</text>
+
+  <rect class="box front" x="80" y="390" width="290" height="72" />
+  <text class="text" x="105" y="418">Cart + Checkout</text>
+  <text class="small" x="105" y="443">cart.php, checkout.php</text>
+
+  <rect class="box front" x="80" y="490" width="290" height="72" />
+  <text class="text" x="105" y="518">Login + Register</text>
+  <text class="small" x="105" y="543">auth/login.php, register.php</text>
+
+  <rect class="box front" x="80" y="590" width="290" height="72" />
+  <text class="text" x="105" y="618">Customer Account</text>
+  <text class="small" x="105" y="643">profile, orders, returns</text>
+
+  <rect class="box admin" x="80" y="690" width="290" height="92" />
+  <text class="text" x="105" y="718">Admin Dashboard</text>
+  <text class="small" x="105" y="743">products, orders, customers,</text>
+  <text class="small" x="105" y="763">returns, status updates</text>
+
+  <rect class="box front" x="80" y="820" width="290" height="82" />
+  <text class="text" x="105" y="848">Assets</text>
+  <text class="small" x="105" y="873">CSS, JS, product images,</text>
+  <text class="small" x="105" y="893">hero image</text>
+
+  <!-- Backend boxes -->
+  <rect class="box back" x="500" y="190" width="310" height="82" />
+  <text class="text" x="525" y="218">Product Loading</text>
+  <text class="small" x="525" y="243">get_products(), get_product()</text>
+  <text class="small" x="525" y="263">includes/functions.php</text>
+
+  <rect class="box back" x="500" y="315" width="310" height="82" />
+  <text class="text" x="525" y="343">Cart Actions</text>
+  <text class="small" x="525" y="368">add/update/remove cart</text>
+  <text class="small" x="525" y="388">actions/*.php</text>
+
+  <rect class="box back" x="500" y="440" width="310" height="92" />
+  <text class="text" x="525" y="468">Checkout Backend</text>
+  <text class="small" x="525" y="493">validate details, create order,</text>
+  <text class="small" x="525" y="513">save items, reduce stock</text>
+
+  <rect class="box back" x="500" y="575" width="310" height="92" />
+  <text class="text" x="525" y="603">Authentication</text>
+  <text class="small" x="525" y="628">register user, hash password,</text>
+  <text class="small" x="525" y="648">verify login</text>
+
+  <rect class="box back" x="500" y="710" width="310" height="102" />
+  <text class="text" x="525" y="738">Admin Actions</text>
+  <text class="small" x="525" y="763">save products, update orders,</text>
+  <text class="small" x="525" y="783">delete customers, update returns</text>
+
+  <rect class="box back" x="500" y="855" width="310" height="92" />
+  <text class="text" x="525" y="883">Return Requests</text>
+  <text class="small" x="525" y="908">customer requests return,</text>
+  <text class="small" x="525" y="928">admin approves/updates</text>
+
+  <!-- Session/security boxes -->
+  <rect class="box session" x="940" y="245" width="230" height="82" />
+  <text class="text" x="965" y="273">PHP Session</text>
+  <text class="small" x="965" y="298">logged-in user</text>
+  <text class="small" x="965" y="318">cart items</text>
+
+  <rect class="box session" x="940" y="380" width="230" height="82" />
+  <text class="text" x="965" y="408">CSRF Protection</text>
+  <text class="small" x="965" y="433">protects POST forms</text>
+  <text class="small" x="965" y="453">csrf_token()</text>
+
+  <rect class="box session" x="940" y="515" width="230" height="82" />
+  <text class="text" x="965" y="543">Access Control</text>
+  <text class="small" x="965" y="568">require_admin()</text>
+  <text class="small" x="965" y="588">require_customer()</text>
+
+  <!-- Database boxes -->
+  <rect class="box db" x="1300" y="190" width="215" height="72" />
+  <text class="text" x="1325" y="218">products</text>
+  <text class="small" x="1325" y="243">catalog + stock</text>
+
+  <rect class="box db" x="1300" y="300" width="215" height="72" />
+  <text class="text" x="1325" y="328">users</text>
+  <text class="small" x="1325" y="353">customers + admin</text>
+
+  <rect class="box db" x="1300" y="410" width="215" height="72" />
+  <text class="text" x="1325" y="438">orders</text>
+  <text class="small" x="1325" y="463">customer order info</text>
+
+  <rect class="box db" x="1300" y="520" width="215" height="72" />
+  <text class="text" x="1325" y="548">order_items</text>
+  <text class="small" x="1325" y="573">products in order</text>
+
+  <rect class="box db" x="1300" y="630" width="215" height="72" />
+  <text class="text" x="1325" y="658">return_requests</text>
+  <text class="small" x="1325" y="683">return status + notes</text>
+
+  <rect class="box db" x="1300" y="760" width="215" height="92" />
+  <text class="text" x="1325" y="788">uploads/products</text>
+  <text class="small" x="1325" y="813">product images saved</text>
+  <text class="small" x="1325" y="833">outside database</text>
+
+  <!-- Main arrows -->
+  <path class="arrow" d="M370 226 C430 226 440 226 500 226" />
+  <path class="arrow" d="M370 326 C430 326 440 326 500 326" />
+  <path class="arrow" d="M370 426 C430 426 440 426 500 456" />
+  <path class="arrow" d="M370 526 C430 526 440 526 500 600" />
+  <path class="arrow" d="M370 626 C430 626 440 626 500 900" />
+  <path class="arrow" d="M370 736 C430 736 440 736 500 760" />
+
+  <path class="arrow" d="M810 226 C1030 226 1090 226 1300 226" />
+  <path class="arrow" d="M810 356 C870 356 880 300 940 286" />
+  <path class="arrow" d="M810 486 C1050 486 1080 446 1300 446" />
+  <path class="arrow" d="M810 496 C1050 496 1080 556 1300 556" />
+  <path class="arrow" d="M810 620 C1050 620 1080 336 1300 336" />
+  <path class="arrow" d="M810 760 C1050 760 1080 226 1300 226" />
+  <path class="arrow" d="M810 760 C1050 760 1080 446 1300 446" />
+  <path class="arrow" d="M810 905 C1050 905 1080 666 1300 666" />
+
+  <path class="arrow dash" d="M655 397 C655 420 800 420 940 420" />
+  <path class="arrow dash" d="M655 532 C655 555 800 555 940 555" />
+  <path class="arrow dash" d="M655 315 C730 285 850 285 940 285" />
+
+  <!-- User journey note -->
+  <rect class="section" x="60" y="1110" width="1480" height="60" />
+  <text class="subtitle" x="85" y="1145">Typical customer journey: Home → Shop → Product → Add to Cart → Checkout → Order saved in MySQL → Admin updates order status → Customer can view shipping/return status.</text>
+</svg>

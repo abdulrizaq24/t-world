@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/functions.php';
 
 $pageTitle = 'T-World | Login';
 $pageCss = ['auth.css'];
+$pageJs = ['password-toggle.js'];
 $error = '';
 $success = flash('success');
 
@@ -65,7 +66,15 @@ require_once __DIR__ . '/../includes/header.php';
 
             <label>
               Password
-              <input type="password" name="password" required />
+              <span class="password-field">
+                <input type="password" name="password" required data-password-input />
+                <button type="button" class="password-toggle" aria-label="Show password" aria-pressed="false" data-password-toggle>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </span>
             </label>
 
             <button class="btn btn-primary" type="submit">Login</button>

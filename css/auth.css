@@ -1,4 +1,4 @@
-.auth-page {
+﻿.auth-page {
   width: min(1120px, calc(100% - 32px));
   min-height: calc(100vh - 72px);
   margin: 0 auto;
@@ -92,3 +92,46 @@
     padding: 24px;
   }
 }
+.password-field {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.password-field input {
+  width: 100%;
+  padding-right: 46px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid #eeeeee;
+  border-radius: 0 4px 4px 0;
+  color: #555555;
+  background: #ffffff;
+}
+
+.password-toggle:hover {
+  color: #111111;
+  background: #f4f4f4;
+}
+
+.password-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+

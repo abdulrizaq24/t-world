@@ -1,0 +1,24 @@
+﻿# Local database credentials
+config/database.php
+
+# Database exports and backups with real customer data
+database/*.sql
+database/*.dump
+database/*.bak
+database/*.db
+database/*.sqlite
+*.sql
+*.dump
+*.bak
+*.db
+*.sqlite
+
+# Runtime/customer uploads
+uploads/products/*
+!uploads/products/.gitkeep
+
+# Local tunnel/tool files
+.tools/
+
+# Local logs
+*.log
