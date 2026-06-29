@@ -47,6 +47,7 @@ $lowStockCountStatement = $pdo->prepare('SELECT COUNT(*) FROM products WHERE sto
 $lowStockCountStatement->execute(['low_stock_limit' => $lowStockLimit]);
 $lowStockCount = (int) $lowStockCountStatement->fetchColumn();
 $recentOrders = $pdo->query('SELECT * FROM orders ORDER BY created_at DESC LIMIT 5')->fetchAll();
+$pendingOrdersCount = (int) $pdo->query("SELECT COUNT(*) FROM orders WHERE status = 'pending'")->fetchColumn();
 $adminSuccess = flash('admin_success');
 $adminError = flash('admin_error');
 
@@ -82,7 +83,18 @@ $adminError = flash('admin_error');
             <p class="eyebrow">Admin</p>
             <h1>Dashboard</h1>
           </div>
-          <a class="btn btn-primary" href="product_form.php">Add Product</a>
+          <div class="admin-header-actions">
+            <a class="notification-bell" href="orders.php?status=pending" aria-label="Pending orders">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <?php if ($pendingOrdersCount > 0): ?>
+                <span class="notification-badge"><?= h((string) $pendingOrdersCount) ?></span>
+              <?php endif; ?>
+            </a>
+            <a class="btn btn-primary" href="product_form.php">Add Product</a>
+          </div>
         </header>
 
         <?php if ($adminSuccess): ?>

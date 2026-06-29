@@ -54,6 +54,43 @@
   line-height: 1;
 }
 
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.notification-bell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  color: #111111;
+  text-decoration: none;
+}
+
+.notification-bell:hover {
+  background: #f0f0f0;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #e63946;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 999px;
+  line-height: 1;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
