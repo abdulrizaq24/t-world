@@ -128,6 +128,13 @@ try {
     }
 
     $pdo->commit();
+    notify_admins_new_order([
+        'id' => $orderId,
+        'customer_name' => $customerName,
+        'email' => $email,
+        'phone' => $phone,
+        'total' => $total,
+    ]);
 } catch (Throwable $exception) {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();

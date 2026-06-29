@@ -202,6 +202,33 @@ function get_order_items(int $orderId): array
     return $statement->fetchAll();
 }
 
+function notify_admins_new_order(array $order): void
+{
+    global $pdo;
+
+    $statement = $pdo->query("SELECT email FROM users WHERE role = 'admin'");
+    $adminEmails = array_filter(array_column($statement->fetchAll(), 'email'), 'email_is_valid');
+
+    if (count($adminEmails) === 0) {
+        return;
+    }
+
+    $subject = 'New order received: #TW-' . $order['id'];
+    $message = implode("\n", [
+        'A customer placed a new order.',
+        'Order: #TW-' . $order['id'],
+        'Customer: ' . $order['customer_name'],
+        'Email: ' . $order['email'],
+        'Phone: ' . $order['phone'],
+        'Total: ' . money((float) $order['total']),
+    ]);
+    $headers = 'From: T-World <no-reply@t-world.test>';
+
+    foreach ($adminEmails as $adminEmail) {
+        @mail($adminEmail, $subject, $message, $headers);
+    }
+}
+
 function return_statuses(): array
 {
     return [
