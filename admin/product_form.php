@@ -28,7 +28,9 @@ if ($productId > 0 && !$product) {
   <body>
     <div class="admin-layout">
       <aside class="admin-sidebar">
-        <a class="brand" href="../index.php">T-World</a>
+        <a class="brand" href="../index.php" aria-label="T-World home">
+          <img src="<?= h(base_path('images/favicon.png')) ?>" alt="T-World" />
+        </a>
 
         <nav class="admin-nav" aria-label="Admin navigation">
           <a href="dashboard.php">Dashboard</a>

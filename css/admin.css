@@ -17,6 +17,10 @@
   background: #111111;
 }
 
+.admin-sidebar .brand img {
+  filter: brightness(0) invert(1);
+}
+
 .admin-nav {
   display: grid;
   gap: 8px;

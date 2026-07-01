@@ -1,7 +1,9 @@
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-brand">
-          <a class="brand" href="<?= h(base_path('index.php')) ?>">T-World</a>
+          <a class="brand" href="<?= h(base_path('index.php')) ?>" aria-label="T-World home">
+            <img src="<?= h(base_path('images/favicon.png')) ?>" alt="T-World" />
+          </a>
           <p>Clean, comfortable T-shirts for everyday style.</p>
         </div>
 
