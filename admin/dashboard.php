@@ -41,6 +41,7 @@ $products = $productStatement->fetchAll();
 
 $totalOrders = (int) $pdo->query('SELECT COUNT(*) FROM orders')->fetchColumn();
 $totalProducts = (int) $pdo->query('SELECT COUNT(*) FROM products')->fetchColumn();
+$totalStock = (int) $pdo->query('SELECT COALESCE(SUM(stock), 0) FROM products')->fetchColumn();
 $revenue = (float) $pdo->query('SELECT COALESCE(SUM(total), 0) FROM orders')->fetchColumn();
 $customers = (int) $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'customer'")->fetchColumn();
 $lowStockCountStatement = $pdo->prepare('SELECT COUNT(*) FROM products WHERE stock <= :low_stock_limit');
@@ -124,9 +125,9 @@ $adminError = flash('admin_error');
             <span>Customers</span>
             <strong><?= h((string) $customers) ?></strong>
           </article>
-          <article class="stat-card warning-card">
-            <span>Low Stock</span>
-            <strong><?= h((string) $lowStockCount) ?></strong>
+          <article class="stat-card">
+            <span>Total Stock</span>
+            <strong><?= h((string) $totalStock) ?></strong>
           </article>
         </section>
 
