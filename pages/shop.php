@@ -20,13 +20,15 @@ require_once __DIR__ . '/../includes/header.php';
 
 ?>
     <main>
-      <section class="shop-hero">
-        <p class="eyebrow">T-World shop</p>
-        <h1>Shop T-Shirts</h1>
-        <p>
-          Browse everyday essentials, oversized fits, and graphic tees ready for
-          your rotation.
-        </p>
+      <section class="full-width-banner">
+        <div class="full-width-banner-content">
+          <p class="eyebrow">NEW ARRIVALS</p>
+          <h1>SUMMER T-SHIRT COLLECTION</h1>
+          <p>
+            Premium oversized tees, bold graphics, and everyday essentials.
+          </p>
+          <a class="btn btn-primary" href="shop.php">SHOP NOW</a>
+        </div>
       </section>
 
       <section class="shop-products" aria-label="Product list">
@@ -53,7 +55,7 @@ require_once __DIR__ . '/../includes/header.php';
                 type="search"
                 name="search"
                 value="<?= h($search) ?>"
-                placeholder="Search by name or category"
+                placeholder="Search tees, fits, colors"
               />
             </label>
           </form>

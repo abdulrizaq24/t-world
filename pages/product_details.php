@@ -91,8 +91,9 @@ require_once __DIR__ . '/../includes/header.php';
             <ul>
               <li>Stock available: <?= h((string) $product['stock']) ?></li>
               <li>Category: <?= h($product['category']) ?></li>
+              <li>Soft premium cotton feel</li>
               <li>Machine washable</li>
-              <li>Made for everyday wear</li>
+              <li>Designed for daily rotation</li>
             </ul>
           </div>
         </div>

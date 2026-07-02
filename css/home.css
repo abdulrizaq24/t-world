@@ -35,7 +35,7 @@
     min-height: 460px;
     overflow: hidden;
     border-radius: 8px;
-    background: #f2f2f2 url('../images/hero-shirt-placeholder.jpg') center / cover no-repeat;
+    background: #f2f2f2 url('../images/banner for homepage.png') center / cover no-repeat;
 }
 
 .hero-visual img {
@@ -49,6 +49,34 @@
     width: min(1120px, calc(100% - 32px));
     margin: 0 auto;
     padding: 72px 0;
+}
+
+.trust-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 56px;
+    padding: 24px 0;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.trust-strip div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.trust-strip strong {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111111;
+}
+
+.trust-strip span {
+    font-size: 0.95rem;
+    color: #666666;
+    line-height: 1.5;
 }
 
 .section-heading {
@@ -130,31 +158,36 @@
 
 .promo-banner {
     width: min(1120px, calc(100% - 32px));
-    margin: 0 auto 72px;
-    padding: 64px;
+    margin: 0 auto 96px;
+    padding: 80px 64px;
     color: #ffffff;
     background: #111111;
-    border-radius: 8px;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .promo-content {
-    max-width: 620px;
+    max-width: 680px;
 }
 
 .promo-banner .eyebrow {
-    color: #555555;
+    color: #888888;
 }
 
 .promo-banner h2 {
     margin: 0;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.05;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
 }
 
 .promo-banner p:not(.eyebrow) {
-    margin: 18px 0 28px;
+    margin: 24px 0 32px;
     color: #dedede;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     line-height: 1.7;
 }
 
@@ -164,6 +197,10 @@
         grid-template-columns: 1fr;
         gap: 36px;
         padding: 48px 0;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
     }
 
     .hero-visual {
@@ -177,6 +214,12 @@
 
     .featured-products {
         padding: 48px 0;
+    }
+
+    .trust-strip {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 40px;
     }
 
     .section-heading h2 {

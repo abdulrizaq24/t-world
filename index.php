@@ -11,32 +11,37 @@ require_once __DIR__ . '/includes/header.php';
 
 ?>
     <main>
-      <section class="hero">
-        <div class="hero-content">
-          <p class="eyebrow">New collection</p>
-          <h1>Wear Your Style</h1>
-          <p class="hero-text">
-            Discover clean, comfortable T-shirts made for everyday confidence.
+      <section class="full-width-banner">
+        <div class="full-width-banner-content">
+          <p class="eyebrow">NEW ARRIVALS</p>
+          <h1>SUMMER T-SHIRT COLLECTION</h1>
+          <p>
+            Premium oversized tees, bold graphics, and everyday essentials.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="<?= h(base_path('pages/shop.php')) ?>">Shop Now</a>
-            <a class="btn btn-secondary" href="#categories">View Categories</a>
-          </div>
-        </div>
-
-        <div class="hero-visual">
-          <img
-            src="<?= h(base_path('images/hero-shirt-placeholder.jpg')) ?>"
-            alt="Featured T-shirt from T-World"
-          />
+          <a class="btn btn-primary" href="<?= h(base_path('pages/shop.php')) ?>">SHOP NOW</a>
         </div>
       </section>
 
       <section class="featured-products">
         <div class="section-heading">
-          <p class="eyebrow">Featured products</p>
-          <h2>Popular T-Shirts</h2>
-          <p>Start with these customer favorites from the latest T-World drop.</p>
+          <p class="eyebrow">Curated Selection</p>
+          <h2>Signature Pieces</h2>
+          <p>Our most loved silhouettes, designed to anchor your wardrobe.</p>
+        </div>
+
+        <div class="trust-strip" aria-label="Store highlights">
+          <div>
+            <strong>Premium fabrics</strong>
+            <span>Comfort-first cotton blends with elevated structure.</span>
+          </div>
+          <div>
+            <strong>Fast local delivery</strong>
+            <span>Quick dispatch on ready-to-wear essentials.</span>
+          </div>
+          <div>
+            <strong>Easy returns</strong>
+            <span>Shop confidently with simple support after purchase.</span>
+          </div>
         </div>
 
         <div class="product-grid">
@@ -62,9 +67,9 @@ require_once __DIR__ . '/includes/header.php';
 
       <section class="categories" id="categories">
         <div class="section-heading">
-          <p class="eyebrow">Shop by category</p>
-          <h2>Find Your Fit</h2>
-          <p>Explore T-shirts by style and choose the look that matches your day.</p>
+          <p class="eyebrow">Collections</p>
+          <h2>Find Your Signature Fit</h2>
+          <p>From structured heavyweight to relaxed everyday drapes.</p>
         </div>
 
         <div class="category-grid">
@@ -92,13 +97,12 @@ require_once __DIR__ . '/includes/header.php';
 
       <section class="promo-banner">
         <div class="promo-content">
-          <p class="eyebrow">Limited drop</p>
-          <h2>Get 15% off your first T-World order</h2>
+          <p class="eyebrow">Join the club</p>
+          <h2>Unlock 15% off your first order</h2>
           <p>
-            Build your everyday rotation with fresh tees made for comfort,
-            confidence, and clean style.
+            Upgrade your rotation with premium essentials. Sign up for early access to drops and exclusive offers.
           </p>
-          <a class="btn btn-light" href="<?= h(base_path('pages/shop.php')) ?>">Shop the Drop</a>
+          <a class="btn btn-light" href="<?= h(base_path('pages/shop.php')) ?>">Shop Essentials</a>
         </div>
       </section>
     </main>

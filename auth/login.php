@@ -46,8 +46,8 @@ require_once __DIR__ . '/../includes/header.php';
       <section class="auth-page">
         <div class="auth-panel">
           <p class="eyebrow">Welcome back</p>
-          <h1>Login</h1>
-          <p class="auth-intro">Sign in to manage your T-World orders.</p>
+          <h1>Sign In</h1>
+          <p class="auth-intro">Access your account, track orders, and continue shopping premium everyday essentials.</p>
 
           <?php if ($success): ?>
             <p class="auth-success"><?= h($success) ?></p>

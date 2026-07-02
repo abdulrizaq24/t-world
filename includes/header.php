@@ -3,6 +3,7 @@
 $pageTitle = $pageTitle ?? 'T-World';
 $pageCss = $pageCss ?? [];
 $basePath = $basePath ?? '';
+$showBanner = $showBanner ?? false;
 $user = current_user();
 $cartCount = cart_count();
 
@@ -20,6 +21,12 @@ $cartCount = cart_count();
     <?php endforeach; ?>
   </head>
   <body>
+    <?php if ($showBanner): ?>
+      <div class="site-banner">
+        <p>Free delivery on qualifying orders. New arrivals landing weekly.</p>
+        <a href="<?= h(base_path('pages/shop.php')) ?>">Shop now</a>
+      </div>
+    <?php endif; ?>
     <header class="site-header">
       <nav class="navbar" aria-label="Main navigation">
         <a class="brand" href="<?= h(base_path('index.php')) ?>" aria-label="T-World home">

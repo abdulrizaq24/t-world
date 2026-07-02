@@ -1,28 +1,33 @@
 ﻿.auth-page {
   width: min(1120px, calc(100% - 32px));
-  min-height: calc(100vh - 72px);
+  min-height: calc(100vh - 80px);
   margin: 0 auto;
   display: grid;
   place-items: center;
   padding: 72px 0 88px;
+  background: radial-gradient(circle at top, rgba(17, 17, 17, 0.05), transparent 42%);
 }
 
 .auth-panel {
   width: min(100%, 460px);
-  padding: 32px;
+  padding: 48px;
+  background: #ffffff;
   border: 1px solid #eeeeee;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.04);
 }
 
 .auth-panel h1 {
   margin: 0;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(2.2rem, 5vw, 2.8rem);
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .auth-intro {
   margin: 16px 0 0;
   color: #555555;
+  font-size: 1.05rem;
   line-height: 1.7;
 }
 
@@ -52,21 +57,28 @@
 
 .auth-form label {
   display: grid;
-  gap: 10px;
-  color: #333333;
-  font-weight: 800;
+  gap: 8px;
+  color: #111111;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
-.auth-form input {
-  min-height: 46px;
-  padding: 0 12px;
+.auth-form input:not([type="checkbox"]) {
+  min-height: 52px;
+  padding: 0 16px;
   border: 1px solid #dddddd;
-  border-radius: 4px;
+  border-radius: 8px;
+  background: #fcfcfc;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.auth-form input:focus-visible {
+  background: #ffffff;
 }
 
 .auth-form .btn {
   width: 100%;
-  margin-top: 6px;
+  margin-top: 12px;
 }
 
 .auth-switch {
@@ -89,7 +101,7 @@
   }
 
   .auth-panel {
-    padding: 24px;
+    padding: 28px 24px;
   }
 }
 .password-field {
@@ -107,22 +119,20 @@
   position: absolute;
   top: 1px;
   right: 1px;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   border: 0;
-  border-left: 1px solid #eeeeee;
-  border-radius: 0 4px 4px 0;
-  color: #555555;
-  background: #ffffff;
+  border-radius: 0 8px 8px 0;
+  color: #777777;
+  background: transparent;
 }
 
 .password-toggle:hover {
   color: #111111;
-  background: #f4f4f4;
 }
 
 .password-toggle svg {

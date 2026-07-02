@@ -4,7 +4,7 @@
           <a class="brand" href="<?= h(base_path('index.php')) ?>" aria-label="T-World home">
             <img src="<?= h(base_path('images/favicon.png')) ?>" alt="T-World" />
           </a>
-          <p>Clean, comfortable T-shirts for everyday style.</p>
+          <p>Premium T-shirts crafted for everyday comfort, confident fits, and clean street-ready style.</p>
         </div>
 
         <div class="footer-links">
